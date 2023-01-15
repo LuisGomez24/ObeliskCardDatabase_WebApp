@@ -1,4 +1,15 @@
 {% extends './layout.html' %}
 
-{% block title %}{{ data.title }}{% endblock title %}
-{% block body %}{{ data.title }}{% endblock body %}
+{% block title %}Ra’s Sanctuary{% endblock title %}
+{% block body %}
+<h2>Ra’s Sanctuary</h2>
+<form id="search" method="post">
+    <input type="text" id="fname" name="fname" value="{{ fname }}">
+    <button type="submit" class="btn btn-primary"> BUSCAR</button>
+</form>
+{% if data %}
+{% for card in data.data %}
+        <li>{{ card.name }} : {{ card.id }}</li>
+    {% endfor %}
+{% endif %}
+{% endblock body %}
