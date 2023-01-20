@@ -1,6 +1,6 @@
 import json
 import requests
-from flask import Flask, render_template, request, redirect, url_for, flash, get_flashed_messages
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__.split('.')[0])
 app.secret_key = '87SjpqLnbaUJQ5zcV8ge0w'
@@ -19,12 +19,15 @@ def index():
     if request.method == 'GET':
         return render_template('index.html', fname='')
     else:
-        return redirect(url_for('search', fname=request.form['fname']), code=302)
+        return redirect(url_for('search', card=request.form['card-searched']), code=302)
 
-@app.route('/search/<fname>', methods=['GET', 'POST'])
-def search(fname):
-    data = json.loads(requests.get(f'{URL}/?fname={fname}').text)
-    return render_template('index.html', data=data, fname=fname)
+@app.route('/search/<card>', methods=['GET', 'POST'])
+def search(card):
+    if request.method == 'POST':
+        return redirect(url_for('search', card=request.form['card-searched']), code=302)
+        
+    data = json.loads(requests.get(f'{URL}/?fname={card}').text)
+    return render_template('index.html', data=data, card=card)
 
 @app.errorhandler(404)
 def page_not_found(e):
