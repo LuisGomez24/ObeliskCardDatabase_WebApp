@@ -1,0 +1,77 @@
+{% extends './layout.html' %}
+
+{% block title %} {{card.name}} {% endblock title %}
+
+{% block body %}
+<div class="row d-flex justify-content-center align-items-center pt-5">
+    <div class="row bg-light g-0 border-primary-blue rounded overflow-hidden p-2 card-group">
+        <div id="card-image" class="col-auto">
+            <svg class="bd-placeholder-img" width="234" height="338" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        </div>
+        <div id="card-data" class="col m-2 text-center">
+            <div id="card-name" class="card text-white bg-primary-blue m-1">
+                <div class="card-header"><h4 class="fw-bolder">{{card.name}}</h4></div>
+            </div>
+            <div class="row m-1">
+                <div id="card-type" class="col card text-white bg-primary-blue m-2">
+                    <span>Type</span>
+                    <span>
+                        {% if card.frameType == "spell" %}
+                            <img src="https://i.ibb.co/XLYk181/Spell.webp" alt="Spell" border="0">
+                        {% elif card.frameType == "trap" %}
+                            <img src="https://i.ibb.co/HVsmGbZ/Trap.webp" alt="Trap" border="0">
+                        {% endif %}
+                        {{card.type}}
+                    </span>
+                </div>
+                <div id="card-race" class="col card text-white bg-primary-blue m-2">
+                    <span>Typing</span>
+                    <span>{{card.race}}</span>
+                </div>
+                {% if card.attribute %}
+                    <div id="card-attribute" class="col card text-white bg-primary-blue m-2">
+                        <span>Attribute</span>
+                        <span><img src="{{card.attribute_image}}" alt="{{card.attribute|capitalize}}" border="0"> {{card.attribute}}</span>
+                    </div>
+                {% endif %}
+                {% if card.level %}
+                    <div id="card-level" class="col card text-white bg-primary-blue m-2">
+                        {% if card.frameType == "xyz" %}
+                            <span>Rank</span>
+                            <span>{{card.level}} <img src="https://i.ibb.co/M9FnTDS/RankStar.webp" alt="RankStar" border="0"></span>
+                        {% else %}
+                            <span>Level</span>
+                            <span>{{card.level}} <img src="https://i.ibb.co/Z1w6Ndb/Level-Star.webp" alt="LevelStar" border="0"></span>
+                        {% endif %}  
+                    </div>
+                {% endif %}
+            </div>
+            <div id="card-description" class="row text-start border-primary-blue rounded m-1">
+                <span>Description</span>
+                <span class="text-pre-wrap">{{card.desc}}</span>
+            </div>
+            {% if (card.atk and card.def) or card.archetype %}
+            <div class="row justify-content-center align-items-center text-center text-white m-1">
+                <div id="card-archetype" class="col-4 bg-secondary-blue card m-1">
+                    {% if card.archetype %}
+                    <span>Archetype: {{card.archetype}}</span>
+                    {% else %}
+                    <span>Archetype: N/A</span>
+                    {% endif %}
+                </div>
+                {% if card.atk and card.def %}
+                <div id="card-attack" class="col bg-secondary-blue card m-1">
+                    <span>ATK/ {{card.atk}}</span>
+                </div>
+                <div id="card-defense" class="col bg-secondary-blue card m-1">
+                    <span>DEF/ {{card.def}}</span>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
