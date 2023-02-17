@@ -1,0 +1,97 @@
+:root {
+    --primary: #002840;
+    --secondary: #38728a;
+    --terciary: #6dbede;
+    --white: #fafafa;
+  }
+
+body, html {
+    height: 100%;
+}
+
+.content { 
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    background-image: url("../img/background.png");
+    background-size: cover;
+    overflow: auto;
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.05);
+}
+
+.imagotype {
+    display: block;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    position: relative;
+    margin-top: 5%;
+    width: 40%;
+}
+
+input.form-control {
+    box-shadow: none;
+    outline: none;
+    z-index: 1;
+    max-width: 800px;
+    min-width: 400px;
+}
+
+input.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: none !important;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.card-group {
+    z-index: 1;
+    width: 80%;
+}
+
+#btn-search {
+    width: 100px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#btn-filter {
+    width: 50px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.border-primary-blue {
+    border: 3px solid var(--primary);
+}
+
+.bg-primary-blue, .btn-primary-blue {
+    background-color: var(--primary);
+}
+
+.bg-secondary-blue {
+    background-color: var(--secondary);
+}
+
+.btn-primary-blue:hover {
+    background-color: #02314f;
+}
+
+#card-description {
+    min-height: 100px;
+}
+
+.text-pre-wrap {
+    white-space: pre-wrap;
+}
